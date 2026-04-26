@@ -1,0 +1,651 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/black">
+
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/scrollView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:clipToPadding="false"
+        android:paddingBottom="100dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="20dp">
+
+            <!-- Header -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:paddingTop="40dp"
+                android:paddingBottom="28dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="DIP · EDGE · ANPR"
+                    android:textColor="@color/muted"
+                    android:textSize="9sp"
+                    android:letterSpacing="0.2"
+                    android:textAllCaps="true"
+                    android:fontFamily="monospace"
+                    android:layout_marginBottom="10dp"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Number Plate"
+                    android:textColor="@color/white"
+                    android:textSize="36sp"
+                    android:textStyle="bold"
+                    android:letterSpacing="-0.02"
+                    android:fontFamily="sans-serif-black"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Recognition"
+                    android:textColor="@color/accent"
+                    android:textSize="36sp"
+                    android:textStyle="bold"
+                    android:letterSpacing="-0.02"
+                    android:fontFamily="sans-serif-black"/>
+
+            </LinearLayout>
+
+            <!-- Server Card -->
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardBackgroundColor="@color/card_bg"
+                app:cardCornerRadius="14dp"
+                app:cardElevation="0dp"
+                android:layout_marginBottom="16dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="SERVER"
+                        android:textColor="@color/muted"
+                        android:textSize="8sp"
+                        android:letterSpacing="0.2"
+                        android:textAllCaps="true"
+                        android:fontFamily="monospace"
+                        android:layout_marginBottom="10dp"/>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical"
+                        android:layout_marginBottom="10dp">
+
+                        <View
+                            android:id="@+id/serverDot"
+                            android:layout_width="8dp"
+                            android:layout_height="8dp"
+                            android:background="@drawable/dot_idle"
+                            android:layout_marginEnd="10dp"/>
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/serverUrlLayout"
+                            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:layout_height="wrap_content"
+                            app:boxStrokeColor="@color/border"
+                            app:hintTextColor="@color/muted"
+                            app:boxBackgroundColor="#0D111111"
+                            app:boxCornerRadiusTopStart="8dp"
+                            app:boxCornerRadiusTopEnd="8dp"
+                            app:boxCornerRadiusBottomStart="8dp"
+                            app:boxCornerRadiusBottomEnd="8dp"
+                            android:layout_marginEnd="8dp">
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/serverUrlInput"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="http://192.168.1.1:5000"
+                                android:textColor="@color/white"
+                                android:textSize="11sp"
+                                android:fontFamily="monospace"
+                                android:inputType="textUri"
+                                android:imeOptions="actionDone"
+                                android:paddingTop="10dp"
+                                android:paddingBottom="10dp"/>
+
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/pingBtn"
+                            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Ping"
+                            android:textColor="@color/muted"
+                            android:textSize="10sp"
+                            android:fontFamily="monospace"
+                            app:strokeColor="@color/border"
+                            app:cornerRadius="8dp"/>
+
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/serverLabel"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="not checked"
+                        android:textColor="@color/muted"
+                        android:textSize="10sp"
+                        android:fontFamily="monospace"/>
+
+                    <TextView
+                        android:id="@+id/quotaChip"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:visibility="gone"
+                        android:background="@drawable/chip_bg"
+                        android:paddingStart="10dp"
+                        android:paddingEnd="10dp"
+                        android:paddingTop="3dp"
+                        android:paddingBottom="3dp"
+                        android:textColor="@color/accent2"
+                        android:textSize="9sp"
+                        android:fontFamily="monospace"
+                        android:layout_marginTop="8dp"/>
+
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <!-- Upload Card -->
+            <androidx.cardview.widget.CardView
+                android:id="@+id/uploadCard"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardBackgroundColor="@color/card_bg"
+                app:cardCornerRadius="14dp"
+                app:cardElevation="0dp"
+                android:layout_marginBottom="16dp"
+                android:foreground="?attr/selectableItemBackground">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:gravity="center"
+                    android:padding="28dp">
+
+                    <!-- Upload icon hexagon -->
+                    <FrameLayout
+                        android:layout_width="56dp"
+                        android:layout_height="56dp"
+                        android:background="@drawable/icon_frame"
+                        android:layout_marginBottom="14dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:text="⬡"
+                            android:textColor="@color/accent"
+                            android:textSize="22sp"/>
+
+                    </FrameLayout>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Tap to select a vehicle image"
+                        android:textColor="@color/white"
+                        android:textStyle="bold"
+                        android:textSize="13sp"
+                        android:fontFamily="monospace"
+                        android:gravity="center"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Works on blurry, dark, angled shots"
+                        android:textColor="@color/muted"
+                        android:textSize="10sp"
+                        android:fontFamily="monospace"
+                        android:gravity="center"
+                        android:layout_marginTop="4dp"
+                        android:layout_marginBottom="20dp"/>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center"
+                        android:layout_gravity="center">
+
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/galleryBtn"
+                            style="@style/Widget.ANPR.Button.Primary"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Gallery"
+                            android:textSize="11sp"
+                            android:fontFamily="monospace"
+                            android:layout_marginEnd="10dp"/>
+
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/cameraBtn"
+                            style="@style/Widget.ANPR.Button.Outline"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Camera"
+                            android:textSize="11sp"
+                            android:fontFamily="monospace"/>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <!-- Result Area (hidden initially) -->
+            <LinearLayout
+                android:id="@+id/resultSection"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <!-- Preview Image -->
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:cardBackgroundColor="@color/card_bg"
+                    app:cardCornerRadius="14dp"
+                    app:cardElevation="0dp"
+                    android:layout_marginBottom="12dp">
+
+                    <ImageView
+                        android:id="@+id/previewImage"
+                        android:layout_width="match_parent"
+                        android:layout_height="200dp"
+                        android:scaleType="centerCrop"
+                        android:adjustViewBounds="false"/>
+
+                </androidx.cardview.widget.CardView>
+
+                <!-- Result Card -->
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/resultCard"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:cardBackgroundColor="@color/card_bg"
+                    app:cardCornerRadius="14dp"
+                    app:cardElevation="0dp"
+                    android:layout_marginBottom="16dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="20dp">
+
+                        <!-- Loading state -->
+                        <LinearLayout
+                            android:id="@+id/loadingState"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:gravity="center_vertical"
+                            android:visibility="gone">
+
+                            <ProgressBar
+                                android:layout_width="18dp"
+                                android:layout_height="18dp"
+                                android:indeterminate="true"
+                                android:indeterminateTint="@color/accent"
+                                android:layout_marginEnd="10dp"/>
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Running pipeline — grayscale → edges → OCR…"
+                                android:textColor="@color/muted"
+                                android:textSize="10sp"
+                                android:fontFamily="monospace"/>
+
+                        </LinearLayout>
+
+                        <!-- Found state -->
+                        <LinearLayout
+                            android:id="@+id/foundState"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:visibility="gone">
+
+                            <!-- Badge row -->
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal"
+                                android:gravity="center_vertical"
+                                android:layout_marginBottom="12dp">
+
+                                <TextView
+                                    android:id="@+id/statusBadge"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="PLATE FOUND"
+                                    android:background="@drawable/badge_green"
+                                    android:textColor="@color/accent"
+                                    android:textSize="8sp"
+                                    android:letterSpacing="0.1"
+                                    android:fontFamily="monospace"
+                                    android:textStyle="bold"
+                                    android:paddingStart="8dp"
+                                    android:paddingEnd="8dp"
+                                    android:paddingTop="3dp"
+                                    android:paddingBottom="3dp"
+                                    android:layout_marginEnd="10dp"/>
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Plate Recognizer · deep learning ALPR"
+                                    android:textColor="@color/muted"
+                                    android:textSize="8sp"
+                                    android:fontFamily="monospace"/>
+
+                            </LinearLayout>
+
+                            <!-- Plate number -->
+                            <TextView
+                                android:id="@+id/plateText"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textColor="@color/accent"
+                                android:textSize="44sp"
+                                android:textStyle="bold"
+                                android:fontFamily="sans-serif-black"
+                                android:letterSpacing="0.12"
+                                android:layout_marginBottom="12dp"/>
+
+                            <!-- Confidence bars -->
+                            <LinearLayout
+                                android:id="@+id/confBars"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical"
+                                android:layout_marginBottom="12dp">
+
+                                <!-- Plate conf bar -->
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="horizontal"
+                                    android:gravity="center_vertical"
+                                    android:layout_marginBottom="6dp">
+
+                                    <TextView
+                                        android:layout_width="90dp"
+                                        android:layout_height="wrap_content"
+                                        android:text="Plate conf."
+                                        android:textColor="@color/muted"
+                                        android:textSize="9sp"
+                                        android:fontFamily="monospace"/>
+
+                                    <FrameLayout
+                                        android:layout_width="0dp"
+                                        android:layout_weight="1"
+                                        android:layout_height="5dp"
+                                        android:background="@drawable/bar_track"
+                                        android:layout_marginEnd="8dp">
+
+                                        <View
+                                            android:id="@+id/plateConfBar"
+                                            android:layout_width="0dp"
+                                            android:layout_height="match_parent"
+                                            android:background="@drawable/bar_fill_green"/>
+
+                                    </FrameLayout>
+
+                                    <TextView
+                                        android:id="@+id/plateConfVal"
+                                        android:layout_width="36dp"
+                                        android:layout_height="wrap_content"
+                                        android:textColor="@color/white"
+                                        android:textSize="9sp"
+                                        android:fontFamily="monospace"
+                                        android:gravity="end"/>
+
+                                </LinearLayout>
+
+                                <!-- Region conf bar -->
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="horizontal"
+                                    android:gravity="center_vertical">
+
+                                    <TextView
+                                        android:layout_width="90dp"
+                                        android:layout_height="wrap_content"
+                                        android:text="Region conf."
+                                        android:textColor="@color/muted"
+                                        android:textSize="9sp"
+                                        android:fontFamily="monospace"/>
+
+                                    <FrameLayout
+                                        android:layout_width="0dp"
+                                        android:layout_weight="1"
+                                        android:layout_height="5dp"
+                                        android:background="@drawable/bar_track"
+                                        android:layout_marginEnd="8dp">
+
+                                        <View
+                                            android:id="@+id/regionConfBar"
+                                            android:layout_width="0dp"
+                                            android:layout_height="match_parent"
+                                            android:background="@drawable/bar_fill_green"/>
+
+                                    </FrameLayout>
+
+                                    <TextView
+                                        android:id="@+id/regionConfVal"
+                                        android:layout_width="36dp"
+                                        android:layout_height="wrap_content"
+                                        android:textColor="@color/white"
+                                        android:textSize="9sp"
+                                        android:fontFamily="monospace"
+                                        android:gravity="end"/>
+
+                                </LinearLayout>
+
+                            </LinearLayout>
+
+                            <!-- Meta info -->
+                            <LinearLayout
+                                android:id="@+id/metaBlock"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical"
+                                android:background="@drawable/meta_bg"
+                                android:padding="12dp"
+                                android:layout_marginBottom="14dp">
+
+                                <TextView
+                                    android:id="@+id/metaFile"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:textColor="@color/muted"
+                                    android:textSize="9sp"
+                                    android:fontFamily="monospace"
+                                    android:layout_marginBottom="4dp"/>
+
+                                <TextView
+                                    android:id="@+id/metaRegion"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:textColor="@color/muted"
+                                    android:textSize="9sp"
+                                    android:fontFamily="monospace"
+                                    android:layout_marginBottom="4dp"/>
+
+                                <TextView
+                                    android:id="@+id/metaVehicle"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:textColor="@color/muted"
+                                    android:textSize="9sp"
+                                    android:fontFamily="monospace"
+                                    android:visibility="gone"/>
+
+                            </LinearLayout>
+
+                            <!-- Action buttons -->
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal"
+                                android:gravity="start">
+
+                                <com.google.android.material.button.MaterialButton
+                                    android:id="@+id/tryAnotherBtn"
+                                    style="@style/Widget.ANPR.Button.Outline"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Try another"
+                                    android:textSize="10sp"
+                                    android:fontFamily="monospace"
+                                    android:layout_marginEnd="10dp"/>
+
+                                <com.google.android.material.button.MaterialButton
+                                    android:id="@+id/copyPlateBtn"
+                                    style="@style/Widget.ANPR.Button.Primary"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Copy plate"
+                                    android:textSize="10sp"
+                                    android:fontFamily="monospace"
+                                    android:visibility="gone"/>
+
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+                        <!-- Error state -->
+                        <LinearLayout
+                            android:id="@+id/errorState"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:visibility="gone">
+
+                            <TextView
+                                android:id="@+id/errorText"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textColor="@color/red"
+                                android:textSize="11sp"
+                                android:fontFamily="monospace"
+                                android:textStyle="bold"
+                                android:layout_marginBottom="12dp"/>
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="1. Start the Flask server on your computer:\n   pip install -r requirements.txt\n   python server.py\n\n2. Get a free token at platerecognizer.com\n   Add to .env → PLATE_RECOGNIZER_TOKEN=…\n\n3. Enter your computer's IP address above\n   (must be on same Wi-Fi network)"
+                                android:textColor="@color/muted"
+                                android:textSize="9sp"
+                                android:fontFamily="monospace"
+                                android:lineSpacingMultiplier="1.5"/>
+
+                            <com.google.android.material.button.MaterialButton
+                                android:id="@+id/retryBtn"
+                                style="@style/Widget.ANPR.Button.Outline"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Ping server"
+                                android:textSize="10sp"
+                                android:fontFamily="monospace"
+                                android:layout_marginTop="14dp"/>
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
+
+            </LinearLayout>
+
+            <!-- Footer -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:paddingTop="16dp"
+                android:paddingBottom="8dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Runs locally · Flask + Plate Recognizer API\n2500 free lookups/month · No credit card needed"
+                    android:textColor="@color/muted"
+                    android:textSize="8sp"
+                    android:fontFamily="monospace"
+                    android:gravity="center"
+                    android:layout_marginBottom="10dp"/>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Made by Abhilash Lakshmikanth"
+                        android:textColor="@color/muted"
+                        android:textSize="9sp"
+                        android:fontFamily="monospace"
+                        android:layout_marginEnd="8dp"/>
+
+                    <ImageView
+                        android:id="@+id/githubBtn"
+                        android:layout_width="18dp"
+                        android:layout_height="18dp"
+                        android:src="@drawable/ic_github"
+                        android:contentDescription="GitHub"
+                        android:layout_marginEnd="8dp"
+                        android:foreground="?attr/selectableItemBackgroundBorderless"/>
+
+                    <ImageView
+                        android:id="@+id/linkedinBtn"
+                        android:layout_width="18dp"
+                        android:layout_height="18dp"
+                        android:src="@drawable/ic_linkedin"
+                        android:contentDescription="LinkedIn"
+                        android:foreground="?attr/selectableItemBackgroundBorderless"/>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

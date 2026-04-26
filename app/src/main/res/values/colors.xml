@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF050505</color>
+    <color name="white">#FFF0EDE8</color>
+    <color name="accent">#FFC8F97C</color>
+    <color name="accent2">#FF7CFFF0</color>
+    <color name="muted">#FF888880</color>
+    <color name="surface">#0AFFFFFF</color>
+    <color name="border">#1AFFFFFF</color>
+    <color name="red">#FFFF6B6B</color>
+    <color name="yellow">#FFF9D94C</color>
+    <color name="surface_solid">#FF0D0D0D</color>
+    <color name="card_bg">#FF111111</color>
+    <color name="accent_dim">#33C8F97C</color>
+    <color name="accent_border">#4DC8F97C</color>
+</resources>
